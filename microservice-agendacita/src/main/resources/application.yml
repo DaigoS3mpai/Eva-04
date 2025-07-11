@@ -1,0 +1,33 @@
+server:
+  port: 8082  # ✅ Cambia si deseas otro puerto para agendacita
+
+spring:
+  application:
+    name: msvc-agendacita
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  datasource:
+    url: jdbc:h2:mem:agendadb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
